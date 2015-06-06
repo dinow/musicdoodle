@@ -7,7 +7,7 @@ if (is_ajax()) {
 	}else if ($_POST['action']=='getArtistList') {
 		getArtistList();
 	}else if ($_POST['action']=='fillSongList') {
-		fillSongList($_POST['artistName']);
+		fillSongList($_POST['artistId']);
 	}
 }
 function is_ajax() {
@@ -38,8 +38,9 @@ function fillSongList($artistId){
 	
 	$stmt->bind_result($songId, $songName, $songAlbum, $hits);
 	$songs = array();
+	
 	while ($stmt->fetch()) {
-		$artists[] = array(
+		$songs[] = array(
         	'SONG_ID' => $songId,
         	'VOTES' => $hits,
 			'ALBUM' => $songAlbum,
@@ -49,7 +50,7 @@ function fillSongList($artistId){
 		}
 	$stmt->close();
 	$mysqli->close();
-	print_r($songs);
+	echo json_encode($songs);
 }
 
 function actualizeDB(){

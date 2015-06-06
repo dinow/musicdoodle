@@ -1,1 +1,0 @@
-<tr class="canBeClicked" id="{SONG_ID}"><td class="{CLASS}">{VOTES}</td><td>{ALBUM}</td><td>{NAME}</td></tr>
