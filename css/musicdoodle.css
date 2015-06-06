@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+.dropdown-backdrop {
+    position: static;
+}
+.text-inactive{
+	color: #C8C8C8;
+}
+.text-canClick{
+	cursor: pointer;
+}
+.text-clicked{
+	font-weight: bold;
+}
