@@ -23,13 +23,13 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		        </button>
-		        <a class="navbar-brand" href="#">MusicDoodle, V0.01beta</a>
+		        <a class="navbar-brand" href="#">MusicDoodle, V0.05beta</a>
 		    </div>
     		<div class="navbar-collapse collapse">
 		        <ul class="nav navbar-nav">
-	              <li><a href="#vote">Voter</a></li>
+	              <!--  li><a href="#vote">Voter</a></li>
 	              <li><a href="#viewRanking">Voir classement</a></li>
-	              <li><a href="#viewPlayList">Voir playlist&nbsp;<span class="badge">4</span></a></li>
+	              <li><a href="#viewPlayList">Voir playlist&nbsp;<span class="badge">4</span></a></li-->
 	              <li id="scanDir"><a href="#">Actualiser BDD</a></li>
 	            </ul>
     		</div>

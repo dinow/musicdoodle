@@ -1,5 +1,5 @@
 <?php include("commons/header.php"); ?>
-	<select id="artistDown"></select>
+	<select id="artistDown" class="form-control"></select>
         <div class="table-responsive" id="mainTable">
           <table class="table table-hover table-condensed" >
             <thead>
