@@ -11,6 +11,45 @@
 		}
 		
 		
+		public function getCurrentSong(){
+			$this->connect();
+			$stmt = $this->mysqli->prepare("SELECT songs.path, song_hits.song_id from songs join song_hits on song_hits.song_id = songs.id where song_hits.hits = (select max(song_hits.hits) from song_hits)");
+			$stmt->execute();
+			$stmt->bind_result($songPath, $songId);
+			$stmt->fetch();
+			$stmt->close();
+			
+			if ($songId == ""){
+				return $this->getRandomSong();
+			}else{
+				$stmt = $this->mysqli->prepare("delete from song_hits where song_id = ?");
+				$stmt->bind_param("i", $songId);
+				$stmt->execute();
+				$stmt->close();
+				$this->disconnect();
+				return $songPath;
+			}
+		}
+		
+		private function getRandomSong(){
+			$stmt = $this->mysqli->prepare("SELECT min(songs.id) as minid, max(songs.id) as maxid from songs");
+			$stmt->execute();
+			$stmt->bind_result($minId, $maxId);
+			$stmt->fetch();
+			$stmt->close();
+			$songPath = "";
+			while($songPath == ""){
+				$randId = rand($minId, $maxId);
+				$stmt = $this->mysqli->prepare("SELECT path from songs where id = ?");
+				$stmt->bind_param("i", $randId);
+				$stmt->execute();
+				$stmt->bind_result($songPath);
+				$stmt->fetch();
+				$stmt->close();
+			}
+			return $songPath;
+		}
+		
 		public function getArtistList(){
 			$this->connect();
 			$stmt = $this->mysqli->prepare("SELECT distinct artists.id, artists.name FROM artists ORDER BY name ASC");
