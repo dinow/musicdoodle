@@ -91,9 +91,9 @@
 			return json_encode($songs);
 		}
 		
-		public function actualizeDB(){
+		public function actualizeDB($dir){
 			$songCpt = 0;
-			$dir    = 'Z:/';
+			
 			
 			$this->connect();
 			

@@ -7,7 +7,7 @@ if (is_ajax()) {
 			echo $musicDoodle->voteForSong($_POST['songId']);
 			break;
 		case 'actualize':
-			echo $musicDoodle->actualizeDB();
+			echo $musicDoodle->actualizeDB('Z:/');
 			break;
 		case 'getArtistList':
 			echo $musicDoodle->getArtistList();
