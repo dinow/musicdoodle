@@ -11,7 +11,7 @@ function voteForSong(songId){
       success: function(data) {
   	    	currentElem.text(data);
   	  		currentElem.addClass( "text-clicked" );
-  	  		currentTR.attr("disabled", "1" );
+  	  		//currentTR.attr("disabled", "1" );
       }
     });
 }
