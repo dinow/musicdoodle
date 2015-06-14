@@ -15,6 +15,9 @@ if (is_ajax()) {
 		case 'getSongList':
 			echo $musicDoodle->getSongList($_POST['artistId']);
 			break;
+		case 'getCurrentRanking':
+			echo $musicDoodle->getCurrentRanking();
+			break;
 	}
 }
 

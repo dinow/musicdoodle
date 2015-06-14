@@ -11,6 +11,26 @@
 		}
 		
 		
+		public function getCurrentRanking(){
+			$this->connect();
+			$stmt = $this->mysqli->prepare("select songs.album as album, songs.name as sname,  artists.name as aname, song_hits.hits hits from song_hits join songs on songs.id = song_hits.song_id join artists on songs.artist_id = artists.id order by song_hits.hits DESC");
+			$stmt->execute();
+			$stmt->bind_result($album,$songName, $artistName, $hits);
+			$artists = array();
+			while ($stmt->fetch()) {
+				$artists[] = array(
+						'VOTES' => $hits,
+						'ALBUM' => $album,
+						'ARTIST' => $artistName,
+						'SONGNAME' => $songName
+				);
+			}
+			$stmt->close();
+			$this->disconnect();
+			$songs = array();
+			return json_encode($artists);
+		}
+		
 		public function getCurrentSong(){
 			$this->connect();
 			$stmt = $this->mysqli->prepare("SELECT songs.path, song_hits.song_id from songs join song_hits on song_hits.song_id = songs.id where song_hits.hits = (select max(song_hits.hits) from song_hits)");
