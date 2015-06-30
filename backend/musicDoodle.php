@@ -162,21 +162,29 @@
 				if (is_dir($currentPath)){
 					foreach ($this->getSubFiles($currentPath) as $albumDir){
 						$currentPath = $dir.'/'.$artistDir.'/'.$albumDir;
-						$albumId = $this->getCurrentAlbumEntryId($albumDir, $artistId);
+						
 						if (is_dir($currentPath)){
-							foreach ($this->getSubFiles($currentPath) as $songFile){
-								$currentPath = $dir.'/'.$artistDir.'/'.$albumDir.'/'.$songFile;
-								if (is_dir($currentPath)){
-									foreach ($this->getSubFiles($currentPath) as $subSongFile){
-										$currentPath = $dir.'/'.$artistDir.'/'.$albumDir.'/'.$songFile.'/'.$subSongFile;
-										if ($this->checkAndInsertSong($stmt, $subSongFile, $artistId, $albumId, $currentPath)){
-											$songCpt++;
+							$albumId = $this->getCurrentAlbumEntryId($albumDir, $artistId);
+							if (is_dir($currentPath)){
+								foreach ($this->getSubFiles($currentPath) as $songFile){
+									$currentPath = $dir.'/'.$artistDir.'/'.$albumDir.'/'.$songFile;
+									if (is_dir($currentPath)){
+										foreach ($this->getSubFiles($currentPath) as $subSongFile){
+											$currentPath = $dir.'/'.$artistDir.'/'.$albumDir.'/'.$songFile.'/'.$subSongFile;
+											if ($this->checkAndInsertSong($stmt, $subSongFile, $artistId, $albumId, $currentPath)){
+												$songCpt++;
+											}
 										}
+									}else if ($this->checkAndInsertSong($stmt, $songFile, $artistId, $albumId, $currentPath)){
+										$songCpt++;
 									}
-								}else if ($this->checkAndInsertSong($stmt, $songFile, $artistId, $albumId, $currentPath)){
-									$songCpt++;
 								}
 							}
+						}else{
+							$albumId = $this->getCurrentAlbumEntryId($artistDir, $artistId);
+							//MP3 directement dans le folder du groupe
+							$this->checkAndInsertSong($stmt, $albumDir, $artistId, $albumId, $currentPath);
+							$songCpt++;
 						}
 					}
 				}
