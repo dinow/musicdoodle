@@ -23,13 +23,15 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		        </button>
-		        <a class="navbar-brand" href="#">MusicDoodle, V0.06beta</a>
+		        <a class="navbar-brand" href="#">MusicDoodle, V0.07beta</a>
 		    </div>
     		<div class="navbar-collapse collapse">
 		        <ul class="nav navbar-nav">
 	              <li><a href="index.php">Voter</a></li>
+	              <li><a href="voteAlbum.php">Voter pour un album</a></li>
 	              <li><a href="ranking.php">Voir classement</a></li>
 	              <li id="scanDir"><a href="#">Actualiser BDD</a></li>
+	              <li id="resetVotes"><a href="#">Reset Votes</a></li>
 	            </ul>
     		</div>
     	</div>

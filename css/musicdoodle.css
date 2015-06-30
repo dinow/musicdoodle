@@ -2,6 +2,9 @@
 .dropdown-backdrop {
     position: static;
 }
+.tr-green {
+	background-color: #72d968;
+}
 .text-inactive{
 	color: #C8C8C8;
 }
